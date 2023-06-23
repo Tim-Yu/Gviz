@@ -186,7 +186,8 @@ setClass("AlignmentsTrack",
             showMismatches = TRUE,
             size = NULL,
             transformation = NULL,
-            type = c("coverage", "pileup")
+            type = c("coverage", "pileup"),
+            box.only = T
         )
     )
 )
@@ -832,7 +833,7 @@ setMethod("drawGD", signature("AlignmentsTrack"), function(GdObject, minBase, ma
         h <- diff(ylim)
         middle <- mean(ylim)
         sh <- max(0, min(h, .dpOrDefault(GdObject, "stackHeight", 0.75))) / 2
-        boxOnly <- res > 10
+        boxOnly <- res > 10 | box.only
         if (boxOnly) {
             x <- c(start(readInfo), rep(end(readInfo) + 1, 2), start(readInfo))
             y <- c(rep(readInfo$stack + sh, 2), rep(readInfo$stack - sh, 2))

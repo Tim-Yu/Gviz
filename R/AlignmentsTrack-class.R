@@ -833,7 +833,8 @@ setMethod("drawGD", signature("AlignmentsTrack"), function(GdObject, minBase, ma
         h <- diff(ylim)
         middle <- mean(ylim)
         sh <- max(0, min(h, .dpOrDefault(GdObject, "stackHeight", 0.75))) / 2
-        boxOnly <- res > 10 | box.only
+        # boxOnly <- res > 10 | box.only
+        boxOnly <- T
         if (boxOnly) {
             x <- c(start(readInfo), rep(end(readInfo) + 1, 2), start(readInfo))
             y <- c(rep(readInfo$stack + sh, 2), rep(readInfo$stack - sh, 2))
